@@ -11,20 +11,20 @@
 
         /* ===== CSS VARIABLES ===== */
         :root {
-            --terracotta: #C2653A;
-            --terracotta-dark: #A3522E;
-            --terracotta-light: #D4865F;
-            --sand: #E8DCC8;
-            --sand-light: #F3EDE2;
-            --sand-dark: #D4C4A8;
-            --canyon-brown: #5C3D2E;
-            --canyon-deep: #3B2517;
+            --terracotta: #C96A2B;
+            --terracotta-dark: #A85823;
+            --terracotta-light: #D9864F;
+            --sand: #8B5040;
+            --sand-light: #7A3E2E;
+            --sand-dark: #5C2E1E;
+            --canyon-brown: #7A3E2E;
+            --canyon-deep: #F7F1E6;
             --sage: #7A8B6F;
             --sage-light: #9AAD8E;
             --sky: #8BAFCB;
-            --cream: #FBF8F3;
+            --cream: #6B2F1F;
             --charcoal: #2D2A26;
-            --warm-white: #FEFCF8;
+            --warm-white: #6B2F1F;
 
             --font-display: 'Playfair Display', Georgia, serif;
             --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
@@ -37,7 +37,7 @@
         
         body {
             font-family: var(--font-body);
-            color: var(--charcoal);
+            color: var(--sand-light);
             background: var(--warm-white);
             line-height: 1.6;
             overflow-x: hidden;
@@ -61,7 +61,7 @@
         }
 
         .nav.scrolled {
-            background: rgba(59, 37, 23, 0.95);
+            background: rgba(247, 241, 230, 0.95);
             backdrop-filter: blur(10px);
             padding: 0.5rem 2rem 0;
             box-shadow: 0 2px 20px rgba(0,0,0,0.3);
@@ -91,9 +91,9 @@
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.9);
+            color: #3B1A0D;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: color 0.3s;
@@ -107,11 +107,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--terracotta-light);
+            background: var(--terracotta);
+            height: 3px;
             transition: width 0.3s;
         }
 
-        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover { color: #6B2F1F; }
         .nav-links a:hover::after { width: 100%; }
 
         .nav-links .btn-book {
@@ -125,6 +126,7 @@
         }
 
         .nav-links .btn-book::after { display: none; }
+        .nav-links .btn-book { color: white !important; }
         .nav-links .btn-book:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
 
         /* Mobile menu */
@@ -143,7 +145,7 @@
         .nav-toggle span {
             width: 26px;
             height: 2px;
-            background: white;
+            background: #3B1A0D;
             transition: all 0.3s;
         }
 
@@ -174,10 +176,10 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(59,37,23,0.6) 0%,
-                rgba(59,37,23,0.45) 40%,
-                rgba(59,37,23,0.65) 80%,
-                rgba(59,37,23,0.9) 100%
+                rgba(247,241,230,0.6) 0%,
+                rgba(247,241,230,0.45) 40%,
+                rgba(247,241,230,0.65) 80%,
+                rgba(247,241,230,0.9) 100%
             );
         }
 
@@ -196,8 +198,9 @@
             font-weight: 600;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--sand);
-            border: 1px solid rgba(232,220,200,0.4);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.5);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.5);
             padding: 0.5rem 1.5rem;
             margin-bottom: 1.5rem;
             opacity: 0;
@@ -207,6 +210,7 @@
         .hero h1 {
             font-family: var(--font-display);
             font-size: clamp(3.5rem, 8vw, 6.5rem);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 4px 40px rgba(0,0,0,0.5);
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1.2rem;
@@ -223,8 +227,9 @@
         .hero p {
             font-size: 1.15rem;
             font-weight: 300;
-            color: rgba(255,255,255,0.85);
+            color: #fff;
             max-width: 550px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.5);
             margin: 0 auto 2rem;
             line-height: 1.7;
             opacity: 0;
@@ -310,7 +315,7 @@
 
         /* ===== ABOUT STRIP ===== */
         .about-strip {
-            background: var(--canyon-deep);
+            background: #4A1F12;
             color: var(--sand);
             padding: 5rem 2rem;
             text-align: center;
@@ -324,7 +329,7 @@
         .about-strip h2 {
             font-family: var(--font-display);
             font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            color: var(--sand-light);
+            color: #F7F1E6;
             margin-bottom: 1.5rem;
             font-weight: 400;
         }
@@ -338,7 +343,7 @@
             font-size: 1.05rem;
             line-height: 1.8;
             font-weight: 300;
-            color: rgba(232,220,200,0.75);
+            color: rgba(247,241,230,0.95);
             max-width: 650px;
             margin: 0 auto;
         }
@@ -374,7 +379,7 @@
         /* ===== OFFERINGS PREVIEW ===== */
         .offerings {
             padding: 6rem 2rem;
-            background: var(--cream);
+            background: #6B2F1F;
         }
 
         .offerings .container {
@@ -400,7 +405,7 @@
         .section-header h2 {
             font-family: var(--font-display);
             font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--canyon-deep);
+            color: #F7F1E6;
             font-weight: 700;
         }
 
@@ -411,10 +416,10 @@
         }
 
         .offering-card {
-            background: white;
+            background: #F7F1E6;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(92,61,46,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -446,13 +451,13 @@
         .offering-card-body h3 {
             font-family: var(--font-display);
             font-size: 1.5rem;
-            color: var(--canyon-deep);
+            color: #3B2517;
             margin-bottom: 0.8rem;
         }
 
         .offering-card-body p {
             font-size: 0.95rem;
-            color: #6B5E54;
+            color: #3B2517;
             line-height: 1.7;
             margin-bottom: 1.5rem;
         }
@@ -493,7 +498,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(59,37,23,0.85), rgba(59,37,23,0.5));
+            background: linear-gradient(to right, rgba(247,241,230,0.85), rgba(247,241,230,0.5));
         }
 
         .image-banner-content {
@@ -527,7 +532,7 @@
         /* ===== AMENITIES PREVIEW ===== */
         .amenities-preview {
             padding: 6rem 2rem;
-            background: var(--warm-white);
+            background: #6B2F1F;
         }
 
         .amenities-preview .container {
@@ -546,13 +551,13 @@
             align-items: center;
             gap: 1.2rem;
             padding: 1.5rem;
-            background: var(--sand-light);
+            background: rgba(247,241,230,0.1);
             border-radius: 8px;
             transition: all 0.3s;
         }
 
         .amenity-item:hover {
-            background: var(--sand);
+            background: rgba(247,241,230,0.15);
             transform: translateX(5px);
         }
 
@@ -581,12 +586,12 @@
         .amenity-item h4 {
             font-family: var(--font-display);
             font-size: 1.1rem;
-            color: var(--canyon-deep);
+            color: #F7F1E6;
         }
 
         .amenity-item p {
             font-size: 0.85rem;
-            color: #7A6E63;
+            color: rgba(247,241,230,0.6);
             margin-top: 0.2rem;
         }
 
@@ -668,7 +673,7 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            background: var(--canyon-deep);
+            background: #4A2518;
             color: var(--sand);
             padding: 4rem 2rem 2rem;
         }
@@ -688,7 +693,7 @@
         .footer-brand h3 {
             font-family: var(--font-display);
             font-size: 1.5rem;
-            color: var(--sand-light);
+            color: #F7F1E6;
             margin-bottom: 1rem;
         }
 
@@ -778,7 +783,8 @@
                 flex-direction: row;
                 justify-content: center;
                 padding: 0.8rem 2rem;
-                position: relative;
+                position: fixed;
+                background: rgba(247, 241, 230, 0.95);
             }
 
             .nav.scrolled {
@@ -800,12 +806,13 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(59,37,23,0.97);
+                background: rgba(59,26,13,0.97);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 2rem;
                 padding: 0;
+                z-index: 999;
             }
 
             .nav-links.active { display: flex; }
@@ -813,6 +820,14 @@
             .nav-links a { font-size: 1.2rem; }
 
             .nav-toggle { display: flex; }
+
+            .nav-links.active a {
+                color: #fff !important;
+                font-size: 1.3rem;
+            }
+            .nav-links.active .btn-book {
+                color: #fff !important;
+            }
 
             .offerings-grid { grid-template-columns: 1fr; }
             .amenities-grid { grid-template-columns: 1fr; }
@@ -827,20 +842,20 @@
         /* ===== SUBPAGE STYLES ===== */
         .page-hero {
             padding: 10rem 2rem 4rem;
-            background: var(--canyon-deep);
+            background: #F7F1E6;
             text-align: center;
             position: relative;
         }
         .page-hero h1 {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--sand-light);
+            color: #3B1A0D;
             font-weight: 700;
             margin-bottom: 0.8rem;
         }
         .page-hero p {
             font-size: 1.1rem;
-            color: rgba(232,220,200,0.65);
+            color: rgba(59,26,13,0.7);
             max-width: 600px;
             margin: 0 auto;
             font-weight: 300;
@@ -853,17 +868,17 @@
             margin: 0 auto;
         }
         .page-section:nth-child(even) {
-            background: var(--sand-light);
+            background: #5C2818;
         }
         .page-section h2 {
             font-family: var(--font-display);
             font-size: clamp(1.8rem, 3vw, 2.5rem);
-            color: var(--canyon-deep);
+            color: #F7F1E6;
             margin-bottom: 1.5rem;
         }
         .page-section p, .page-section li {
             font-size: 1rem;
-            color: #5C4D42;
+            color: #F0E4D4;
             line-height: 1.8;
         }
         .page-section ul {
@@ -872,7 +887,7 @@
         }
         .page-section ul li {
             padding: 0.8rem 0;
-            border-bottom: 1px solid var(--sand-dark);
+            border-bottom: 1px solid rgba(247,241,230,0.15);
             padding-left: 1.5rem;
             position: relative;
         }
@@ -891,21 +906,21 @@
             margin-top: 2rem;
         }
         .site-card {
-            background: white;
+            background: rgba(247,241,230,0.08);
             border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: 0 3px 15px rgba(92,61,46,0.08);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
             border-left: 4px solid var(--terracotta);
         }
         .site-card h3 {
             font-family: var(--font-display);
             font-size: 1.15rem;
-            color: var(--canyon-deep);
+            color: #F7F1E6;
             margin-bottom: 0.5rem;
         }
         .site-card p {
             font-size: 0.85rem;
-            color: #7A6E63;
+            color: rgba(247,241,230,0.6);
             line-height: 1.6;
         }
         /* Gallery */
@@ -924,7 +939,7 @@
         }
         .gallery-grid img:hover {
             transform: scale(1.03);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
         /* Contact form styles */
         .contact-grid {
@@ -933,7 +948,7 @@
             gap: 3rem;
         }
         .contact-info-card {
-            background: var(--sand-light);
+            background: rgba(247,241,230,0.08);
             border-radius: 8px;
             padding: 2rem;
             margin-bottom: 1.5rem;
@@ -941,11 +956,11 @@
         .contact-info-card h3 {
             font-family: var(--font-display);
             font-size: 1.3rem;
-            color: var(--canyon-deep);
+            color: #F7F1E6;
             margin-bottom: 0.8rem;
         }
         .contact-info-card p {
-            color: #6B5E54;
+            color: #F0E4D4;
             line-height: 1.7;
         }
         .contact-info-card a {
@@ -955,6 +970,9 @@
         .contact-info-card a:hover {
             color: var(--terracotta-dark);
         }
+        .page-section ul li strong {
+            color: #F7F1E6;
+        }
         /* Amenities page grid */
         .amenity-feature {
             display: grid;
@@ -963,7 +981,7 @@
             align-items: center;
             margin-bottom: 3rem;
             padding-bottom: 3rem;
-            border-bottom: 1px solid var(--sand-dark);
+            border-bottom: 1px solid rgba(247,241,230,0.15);
         }
         .amenity-feature:last-child {
             border-bottom: none;
@@ -979,11 +997,11 @@
         .amenity-feature h3 {
             font-family: var(--font-display);
             font-size: 1.6rem;
-            color: var(--canyon-deep);
+            color: #F7F1E6;
             margin-bottom: 0.8rem;
         }
         .amenity-feature p {
-            color: #6B5E54;
+            color: #F0E4D4;
             line-height: 1.8;
         }
         .amenity-icon-large {
@@ -1015,19 +1033,19 @@
         .storage-card {
             text-align: center;
             padding: 2.5rem 1.5rem;
-            background: white;
+            background: rgba(247,241,230,0.08);
             border-radius: 8px;
             box-shadow: 0 3px 15px rgba(92,61,46,0.08);
         }
         .storage-card h3 {
             font-family: var(--font-display);
             font-size: 1.3rem;
-            color: var(--canyon-deep);
+            color: #F7F1E6;
             margin: 1rem 0 0.5rem;
         }
         .storage-card p {
             font-size: 0.95rem;
-            color: #7A6E63;
+            color: #F0E4D4;
             line-height: 1.6;
         }
         .storage-icon {
@@ -1048,6 +1066,9 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+        .offering-card-body h3 { color: #3B2517 !important; }
+        .offering-card-body p { color: #5C4D42 !important; }
+        .offering-card-body .card-link { color: var(--terracotta) !important; }
         @media (max-width: 768px) {
             .gallery-grid { grid-template-columns: 1fr 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
@@ -1071,7 +1092,7 @@
             <li><a href="offerings.html">Offerings</a></li>
             <li><a href="amenities.html">Amenities</a></li>
             <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="rules.html" style="color:#fff;border-bottom:2px solid var(--terracotta-light)">Resort Info</a></li>
+            <li><a href="rules.html" style="color:#3B1A0D;border-bottom:3px solid var(--terracotta)">Resort Info</a></li>
             <li><a href="storage.html">Storage</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="https://www.camplife.com/1297/reservation/step1" class="btn-book" target="_blank">Book Now</a></li>
