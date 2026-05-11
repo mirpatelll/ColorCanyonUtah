@@ -802,22 +802,53 @@
             }
 
             .nav-links { 
-                display: none;
+                display: flex;
                 position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(59,26,13,0.97);
+                background: #3B1A0D;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 2rem;
                 padding: 0;
                 z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-12px);
+                transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
-            .nav-links.active { display: flex; }
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0s;
+            }
+
+            .nav-links a {
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+            .nav-links.active a {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .nav-links.active a:nth-child(1) { transition-delay: 0.08s; }
+            .nav-links.active a:nth-child(2) { transition-delay: 0.14s; }
+            .nav-links.active a:nth-child(3) { transition-delay: 0.20s; }
+            .nav-links.active a:nth-child(4) { transition-delay: 0.26s; }
+            .nav-links.active a:nth-child(5) { transition-delay: 0.32s; }
+            .nav-links.active a:nth-child(6) { transition-delay: 0.38s; }
+            .nav-links.active a:nth-child(7) { transition-delay: 0.44s; }
+            .nav-links.active a:nth-child(8) { transition-delay: 0.50s; }
+            
+            body.menu-open { overflow: hidden; }
 
             .nav-links a { font-size: 1.2rem; }
 
@@ -1094,6 +1125,7 @@
             <li><a href="offerings.html">Offerings</a></li>
             <li><a href="amenities.html">Amenities</a></li>
             <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="things-to-do.html">Things to Do</a></li>
             <li><a href="rules.html">Resort Info</a></li>
             <li><a href="storage.html">Storage</a></li>
             <li><a href="contact.html" style="color:#3B1A0D;border-bottom:3px solid var(--terracotta)">Contact</a></li>
@@ -1161,6 +1193,7 @@
                         <li><a href="offerings.html">Our Offerings</a></li>
                         <li><a href="amenities.html">Amenities</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="things-to-do.html">Things to Do</a></li>
                         <li><a href="storage.html">Storage Space</a></li>
                     </ul>
                 </div>
@@ -1194,13 +1227,17 @@
             }
         });
         function toggleNav() {
-            document.getElementById('navLinks').classList.toggle('active');
-            document.getElementById('navToggle').classList.toggle('active');
+            const links = document.getElementById('navLinks');
+            const toggle = document.getElementById('navToggle');
+            const isOpen = links.classList.toggle('active');
+            toggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open', isOpen);
         }
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
                 document.getElementById('navToggle').classList.remove('active');
+                document.body.classList.remove('menu-open');
             });
         });
         const observer = new IntersectionObserver((entries) => {

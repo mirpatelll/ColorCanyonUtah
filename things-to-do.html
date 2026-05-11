@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storage Space | Color Canyon RV Resort</title>
+    <title>Things to Do | Color Canyon RV Resort | Hurricane, Utah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1056,6 +1056,58 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+
+        /* Clean amenities card grid */
+        .amenities-count {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #F0E4D4;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .amenities-count strong {
+            color: var(--terracotta);
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+        }
+        .amenities-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .amenity-card {
+            background: rgba(247,241,230,0.05);
+            border: 1px solid rgba(247,241,230,0.12);
+            border-radius: 14px;
+            padding: 2rem 1.75rem;
+            transition: all 0.3s ease;
+        }
+        .amenity-card:hover {
+            background: rgba(247,241,230,0.08);
+            border-color: var(--terracotta);
+            transform: translateY(-4px);
+        }
+        .amenity-card .amenity-icon-large {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+        .amenity-card .amenity-icon-large svg {
+            width: 28px;
+            height: 28px;
+        }
+        .amenity-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: #F7F1E6;
+            margin-bottom: 0.6rem;
+        }
+        .amenity-card p {
+            color: #F0E4D4;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
         /* Storage page */
         .storage-features {
             display: grid;
@@ -1112,6 +1164,631 @@
         }
 
 
+    
+
+        /* ================================================================
+           THINGS TO DO PAGE
+           ================================================================ */
+
+        .ttd-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, #3B1A0D 0%, #5C2818 60%, #7A3E2E 100%);
+        }
+        .ttd-hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(201,106,43,0.18) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(217,134,79,0.15) 0%, transparent 55%);
+            opacity: 0.95;
+            animation: ttdBgDrift 20s ease-in-out infinite alternate;
+        }
+        .ttd-hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(247,241,230,0.04) 1px, transparent 2px),
+                radial-gradient(circle at 85% 20%, rgba(247,241,230,0.06) 1px, transparent 2px),
+                radial-gradient(circle at 50% 80%, rgba(247,241,230,0.05) 1px, transparent 2px);
+            background-size: 80px 80px, 120px 120px, 100px 100px;
+        }
+        @keyframes ttdBgDrift {
+            from { transform: translate3d(0,0,0) scale(1); }
+            to   { transform: translate3d(-20px,-10px,0) scale(1.05); }
+        }
+        .ttd-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .ttd-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--terracotta-light);
+            border: 1px solid rgba(217,134,79,0.4);
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: ttdFadeUp 0.8s 0.1s forwards;
+        }
+        .ttd-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: #F7F1E6;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: ttdFadeUp 0.9s 0.25s forwards;
+        }
+        .ttd-hero p {
+            font-size: 1.15rem;
+            color: rgba(247,241,230,0.75);
+            line-height: 1.7;
+            max-width: 580px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: ttdFadeUp 0.9s 0.4s forwards;
+        }
+        .ttd-cta-hero {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: var(--terracotta);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(201,106,43,0.4);
+            opacity: 0;
+            animation: ttdFadeUp 0.9s 0.55s forwards;
+        }
+        .ttd-cta-hero:hover {
+            background: var(--terracotta-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(201,106,43,0.55);
+        }
+        .ttd-cta-hero svg { animation: ttdBob 1.8s ease-in-out infinite; }
+        @keyframes ttdBob {
+            0%,100% { transform: translateY(0); }
+            50%     { transform: translateY(4px); }
+        }
+        @keyframes ttdFadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .ttd-scroll-hint {
+            position: absolute; bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            width: 24px; height: 40px;
+            border: 2px solid rgba(247,241,230,0.3);
+            border-radius: 15px;
+            display: flex; justify-content: center;
+            padding-top: 6px;
+        }
+        .ttd-scroll-hint span {
+            display: block;
+            width: 3px; height: 8px;
+            background: var(--terracotta-light);
+            border-radius: 2px;
+            animation: ttdScrollDown 1.8s ease-in-out infinite;
+        }
+        @keyframes ttdScrollDown {
+            0%   { opacity: 0; transform: translateY(0); }
+            30%  { opacity: 1; }
+            100% { opacity: 0; transform: translateY(14px); }
+        }
+
+        /* ===== CALCULATOR SECTION ===== */
+        .ttd-calc-section {
+            background: #F7F1E6;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        .ttd-calc-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .ttd-section-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 0.8rem;
+        }
+        .ttd-eyebrow-light { color: var(--terracotta-light); }
+        .ttd-calc-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .ttd-calc-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #3B1A0D;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.15;
+        }
+        .ttd-calc-header h2 em {
+            font-style: italic;
+            color: var(--terracotta);
+        }
+        .ttd-calc-header p {
+            font-size: 1.05rem;
+            color: rgba(59,26,13,0.65);
+            max-width: 540px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        .ttd-calc-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow:
+                0 1px 3px rgba(59,26,13,0.04),
+                0 20px 60px rgba(59,26,13,0.10);
+            position: relative;
+            overflow: hidden;
+        }
+        .ttd-calc-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light), var(--terracotta));
+            background-size: 200% 100%;
+            animation: ttdShimmer 3s linear infinite;
+        }
+        @keyframes ttdShimmer {
+            from { background-position: 0% 0; }
+            to   { background-position: 200% 0; }
+        }
+        .ttd-calc-pins {
+            position: relative;
+        }
+        .ttd-pin {
+            display: flex; align-items: flex-start; gap: 1.2rem;
+            position: relative;
+        }
+        .ttd-pin-dot {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+            position: relative;
+            z-index: 2;
+        }
+        .ttd-pin-start .ttd-pin-dot {
+            background: var(--terracotta);
+            box-shadow: 0 0 0 4px rgba(201,106,43,0.15);
+        }
+        .ttd-pin-end .ttd-pin-dot {
+            background: #fff;
+            border: 3px solid var(--terracotta);
+            box-shadow: 0 0 0 4px rgba(201,106,43,0.15);
+        }
+        .ttd-pin-line {
+            position: absolute;
+            left: 7px; top: 28px;
+            width: 2px; height: 38px;
+            background: repeating-linear-gradient(to bottom, var(--terracotta) 0, var(--terracotta) 4px, transparent 4px, transparent 8px);
+            z-index: 1;
+        }
+        .ttd-pin-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .ttd-pin-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(59,26,13,0.5);
+        }
+        .ttd-pin-value {
+            font-size: 1.1rem;
+            color: #3B1A0D;
+            font-weight: 600;
+            padding: 0.4rem 0;
+        }
+        .ttd-pin-end {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .ttd-dest-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(59,26,13,0.12);
+            padding: 0.5rem 0;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: #3B1A0D;
+            font-weight: 500;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+        .ttd-dest-input::placeholder {
+            color: rgba(59,26,13,0.3);
+            font-weight: 400;
+        }
+        .ttd-dest-input:focus {
+            border-bottom-color: var(--terracotta);
+        }
+        .ttd-suggestions {
+            position: absolute;
+            left: 0; right: 0;
+            margin-top: 0.5rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(59,26,13,0.15);
+            max-height: 240px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+        }
+        .ttd-suggestions.active { display: block; }
+        .ttd-suggestion {
+            padding: 0.85rem 1.2rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #3B1A0D;
+            border-bottom: 1px solid rgba(59,26,13,0.06);
+            transition: background 0.2s ease;
+        }
+        .ttd-suggestion:last-child { border-bottom: none; }
+        .ttd-suggestion:hover, .ttd-suggestion.active {
+            background: rgba(201,106,43,0.08);
+            color: var(--terracotta-dark);
+        }
+        .ttd-suggestion-sub {
+            display: block;
+            font-size: 0.78rem;
+            color: rgba(59,26,13,0.5);
+            margin-top: 2px;
+        }
+
+        .ttd-go-btn {
+            width: 100%;
+            background: var(--terracotta);
+            color: #fff;
+            border: none;
+            padding: 1.1rem 2rem;
+            border-radius: 14px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+        }
+        .ttd-go-btn:hover:not(:disabled) {
+            background: var(--terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201,106,43,0.4);
+        }
+        .ttd-go-btn:disabled { cursor: wait; opacity: 0.85; }
+        .ttd-go-loader {
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            display: none;
+            animation: ttdSpin 0.7s linear infinite;
+        }
+        .ttd-go-btn.loading .ttd-go-loader { display: block; }
+        .ttd-go-btn.loading .ttd-go-text { opacity: 0.85; }
+        @keyframes ttdSpin { to { transform: rotate(360deg); } }
+
+        .ttd-result {
+            margin-top: 1.8rem;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, opacity 0.4s ease 0.1s;
+        }
+        .ttd-result.show {
+            max-height: 600px;
+            opacity: 1;
+        }
+        .ttd-result-error {
+            display: none;
+            background: rgba(220,80,60,0.08);
+            border: 1px solid rgba(220,80,60,0.25);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            color: #B33820;
+            font-size: 0.95rem;
+        }
+        .ttd-result.error .ttd-result-error { display: block; }
+        .ttd-result.error .ttd-result-success { display: none; }
+
+        .ttd-result-success { display: block; }
+        .ttd-route-visual {
+            position: relative;
+            background: linear-gradient(135deg, #FFF8EC 0%, #FFE9D0 100%);
+            border-radius: 16px;
+            padding: 1.4rem 1.4rem 1.6rem;
+            margin-bottom: 1.4rem;
+        }
+        .ttd-route-svg {
+            width: 100%; height: 80px;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .ttd-route-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        .ttd-result.show .ttd-route-path {
+            animation: ttdDrawPath 1.4s ease-out 0.2s forwards;
+        }
+        @keyframes ttdDrawPath {
+            to { stroke-dashoffset: 0; }
+        }
+        .ttd-route-marker { opacity: 0; }
+        .ttd-result.show .ttd-route-marker {
+            animation: ttdPopIn 0.4s ease-out forwards;
+        }
+        .ttd-result.show .ttd-route-marker.ttd-route-end { animation-delay: 1.4s; }
+        .ttd-result.show .ttd-route-marker:not(.ttd-route-end) { animation-delay: 0.2s; }
+        @keyframes ttdPopIn {
+            from { opacity: 0; transform: scale(0); transform-origin: center; }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .ttd-route-from, .ttd-route-to {
+            position: absolute;
+            bottom: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(59,26,13,0.55);
+        }
+        .ttd-route-from { left: 1.4rem; }
+        .ttd-route-to   { right: 1.4rem; color: var(--terracotta-dark); }
+
+        .ttd-result-stats {
+            display: flex; align-items: center; justify-content: center;
+            gap: 2rem;
+            padding: 0.5rem 0 1.5rem;
+        }
+        .ttd-stat { text-align: center; flex: 1; }
+        .ttd-stat-divider {
+            width: 1px;
+            height: 50px;
+            background: rgba(59,26,13,0.12);
+        }
+        .ttd-stat-value {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--terracotta);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .ttd-stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(59,26,13,0.5);
+        }
+        .ttd-maps-link {
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            color: var(--terracotta);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.8rem;
+            border: 2px solid rgba(201,106,43,0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .ttd-maps-link:hover {
+            background: var(--terracotta);
+            color: #fff;
+            border-color: var(--terracotta);
+        }
+
+        /* ===== TOP 15 LIST SECTION ===== */
+        .ttd-list-section {
+            background: #3B1A0D;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .ttd-list-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 200px;
+            background: radial-gradient(ellipse at top, rgba(201,106,43,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .ttd-list-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .ttd-list-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .ttd-list-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #F7F1E6;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+        .ttd-list-header p {
+            font-size: 1.05rem;
+            color: rgba(247,241,230,0.7);
+            max-width: 540px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        .ttd-attractions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.5rem;
+        }
+        .ttd-card {
+            background: rgba(247,241,230,0.04);
+            border: 1px solid rgba(247,241,230,0.1);
+            border-radius: 18px;
+            padding: 1.8rem;
+            position: relative;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            overflow: hidden;
+        }
+        .ttd-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .ttd-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(201,106,43,0.08) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .ttd-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--terracotta);
+            background: rgba(247,241,230,0.07);
+        }
+        .ttd-card:hover::before { opacity: 1; }
+        .ttd-rank {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(217,134,79,0.18);
+            line-height: 1;
+            font-style: italic;
+        }
+        .ttd-card-category {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--terracotta-light);
+            padding: 0.3rem 0.7rem;
+            border: 1px solid rgba(217,134,79,0.3);
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        .ttd-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: #F7F1E6;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+            padding-right: 3rem;
+        }
+        .ttd-card-desc {
+            font-size: 0.92rem;
+            color: rgba(247,241,230,0.65);
+            line-height: 1.6;
+            margin-bottom: 1.4rem;
+            font-weight: 300;
+        }
+        .ttd-card-stats {
+            display: flex;
+            gap: 1.3rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(247,241,230,0.1);
+        }
+        .ttd-card-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: rgba(247,241,230,0.85);
+            font-weight: 600;
+        }
+        .ttd-card-stat svg {
+            width: 16px; height: 16px;
+            color: var(--terracotta-light);
+            flex-shrink: 0;
+        }
+        .ttd-card-stat strong {
+            color: #F7F1E6;
+            font-weight: 700;
+        }
+
+        .ttd-list-footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: rgba(247,241,230,0.55);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        .ttd-list-footer a {
+            color: var(--terracotta-light);
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
+            transition: color 0.3s ease;
+        }
+        .ttd-list-footer a:hover { color: var(--terracotta); }
+
+        /* ===== RESPONSIVE: THINGS TO DO ===== */
+        @media (max-width: 768px) {
+            .ttd-hero { padding: 7rem 1.5rem 4rem; min-height: 60vh; }
+            .ttd-calc-section { padding: 4rem 1.2rem; }
+            .ttd-calc-card { padding: 1.8rem 1.3rem; border-radius: 18px; }
+            .ttd-calc-header { margin-bottom: 2rem; }
+            .ttd-result-stats { gap: 1rem; }
+            .ttd-stat-divider { height: 40px; }
+            .ttd-pin-value { font-size: 1rem; }
+            .ttd-dest-input { font-size: 1rem; }
+            .ttd-list-section { padding: 4rem 1.2rem; }
+            .ttd-attractions { grid-template-columns: 1fr; }
+            .ttd-card { padding: 1.6rem; }
+            .ttd-rank { font-size: 2.4rem; top: 1.2rem; right: 1.2rem; }
+            .ttd-card h3 { font-size: 1.25rem; padding-right: 2.5rem; }
+            .ttd-list-header { margin-bottom: 2.5rem; }
+        }
+        @media (max-width: 420px) {
+            .ttd-hero h1 { font-size: 2.5rem; }
+            .ttd-result-stats { flex-direction: column; gap: 1rem; }
+            .ttd-stat-divider { width: 60px; height: 1px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1125,9 +1802,9 @@
             <li><a href="offerings.html">Offerings</a></li>
             <li><a href="amenities.html">Amenities</a></li>
             <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="things-to-do.html">Things to Do</a></li>
+            <li><a href="things-to-do.html" style="color:#3B1A0D;border-bottom:3px solid var(--terracotta)">Things to Do</a></li>
             <li><a href="rules.html">Resort Info</a></li>
-            <li><a href="storage.html" style="color:#3B1A0D;border-bottom:3px solid var(--terracotta)">Storage</a></li>
+            <li><a href="storage.html">Storage</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="https://www.camplife.com/1297/reservation/step1" class="btn-book" target="_blank">Book Now</a></li>
         </ul>
@@ -1138,84 +1815,111 @@
         </div>
     </nav>
 
-
-    <section class="page-hero">
-        <h1>Storage Space</h1>
-        <p>Secure, convenient RV and vehicle storage right at the resort.</p>
-    </section>
-
-    <section class="page-section">
-        <div class="container">
-            <div class="reveal">
-                <h2>Why Store With Us?</h2>
-                <p style="max-width:700px;margin-bottom:2rem;">Don't worry about finding a place to keep your RV between trips. Color Canyon RV Resort offers secure on-site storage so your rig is always ready when you are.</p>
-            </div>
-            <div class="storage-features">
-                <div class="storage-card reveal">
-                    <div class="storage-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-                    <h3>Secure Facility</h3>
-                    <p>On-site management ensures your vehicle is safe and protected around the clock.</p>
-                </div>
-                <div class="storage-card reveal">
-                    <div class="storage-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <h3>Convenient Location</h3>
-                    <p>Store your RV right at the resort. When you're ready to camp, your rig is just steps away from your site.</p>
-                </div>
-                <div class="storage-card reveal">
-                    <div class="storage-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-                    <h3>Flexible Rates</h3>
-                    <p>Monthly and seasonal storage options available at competitive rates. Contact us for current pricing and availability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="page-section">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">Storage Rates</span>
-                <h2>Storage Services</h2>
-            </div>
-            <div class="site-sizes">
-                <div class="site-card reveal">
-                    <h3>25 x 40 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$150.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-                <div class="site-card reveal">
-                    <h3>25 x 52 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$175.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-                <div class="site-card reveal">
-                    <h3>25 x 60 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$185.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-                <div class="site-card reveal">
-                    <h3>25 x 62 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$190.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-                <div class="site-card reveal">
-                    <h3>25 x 64 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$195.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-                <div class="site-card reveal">
-                    <h3>25 x 88 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$200.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-                <div class="site-card reveal">
-                    <h3>25 x 110 Outdoor Storage</h3>
-                    <p style="font-size:1.3rem;color:var(--terracotta);font-weight:700;font-family:var(--font-display);">$295.00 <span style="font-size:0.85rem;color:#7A6E63;font-weight:400;">/month</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta">
-        <div class="container reveal">
-            <h2>Interested in Storage?</h2>
-            <p>Contact us to learn about availability for RV and vehicle storage at Color Canyon.</p>
-            <a href="contact.html" class="btn-white">
-                Get in Touch <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <!-- ===== PAGE HERO ===== -->
+    <section class="ttd-hero">
+        <div class="ttd-hero-bg"></div>
+        <div class="ttd-hero-content">
+            <span class="ttd-eyebrow">Hurricane, Utah · Gateway to Adventure</span>
+            <h1>Things To Do</h1>
+            <p>Red rock canyons, slot canyons, and a national park in your backyard — all measured from our front gate.</p>
+            <a href="#calculator" class="ttd-cta-hero">
+                <span>Calculate Your Drive</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
             </a>
+        </div>
+        <div class="ttd-scroll-hint">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ===== DISTANCE CALCULATOR ===== -->
+    <section class="ttd-calc-section" id="calculator">
+        <div class="ttd-calc-container">
+            <div class="ttd-calc-header">
+                <span class="ttd-section-eyebrow">Drive Time Calculator</span>
+                <h2>How far is anywhere from <em>here</em>?</h2>
+                <p>Type any destination and we'll plot the real driving route from our gate at 50 South Rlington Parkway.</p>
+            </div>
+
+            <div class="ttd-calc-card">
+                <div class="ttd-calc-pins">
+                    <div class="ttd-pin ttd-pin-start">
+                        <div class="ttd-pin-dot"></div>
+                        <div class="ttd-pin-info">
+                            <span class="ttd-pin-label">Starting from</span>
+                            <span class="ttd-pin-value">Color Canyon RV Resort</span>
+                        </div>
+                    </div>
+                    <div class="ttd-pin-line"></div>
+                    <div class="ttd-pin ttd-pin-end">
+                        <div class="ttd-pin-dot"></div>
+                        <div class="ttd-pin-info">
+                            <span class="ttd-pin-label">Where to?</span>
+                            <input type="text" id="ttdDestInput" class="ttd-dest-input" placeholder="e.g. Zion National Park, Las Vegas..." autocomplete="off" />
+                            <div class="ttd-suggestions" id="ttdSuggestions"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="ttd-go-btn" id="ttdGoBtn">
+                    <span class="ttd-go-text">Plot the Route</span>
+                    <span class="ttd-go-loader"></span>
+                </button>
+
+                <div class="ttd-result" id="ttdResult">
+                    <div class="ttd-result-error" id="ttdError"></div>
+                    <div class="ttd-result-success" id="ttdSuccess">
+                        <div class="ttd-route-visual">
+                            <svg class="ttd-route-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#C96A2B"/>
+                                        <stop offset="100%" stop-color="#D9864F"/>
+                                    </linearGradient>
+                                </defs>
+                                <path class="ttd-route-path" d="M 30,80 Q 150,20 300,60 T 570,40" stroke="url(#routeGrad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+                                <circle class="ttd-route-marker" cx="30" cy="80" r="8" fill="#C96A2B"/>
+                                <circle class="ttd-route-marker ttd-route-end" cx="570" cy="40" r="8" fill="#D9864F"/>
+                            </svg>
+                            <span class="ttd-route-from">Color Canyon</span>
+                            <span class="ttd-route-to" id="ttdRouteTo">Destination</span>
+                        </div>
+                        <div class="ttd-result-stats">
+                            <div class="ttd-stat">
+                                <div class="ttd-stat-value" id="ttdMiles">0</div>
+                                <div class="ttd-stat-label">Miles</div>
+                            </div>
+                            <div class="ttd-stat-divider"></div>
+                            <div class="ttd-stat">
+                                <div class="ttd-stat-value" id="ttdTime">0</div>
+                                <div class="ttd-stat-label">Drive Time</div>
+                            </div>
+                        </div>
+                        <a href="#" id="ttdMapsLink" class="ttd-maps-link" target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOP 15 ATTRACTIONS ===== -->
+    <section class="ttd-list-section">
+        <div class="ttd-list-container">
+            <div class="ttd-list-header">
+                <span class="ttd-section-eyebrow ttd-eyebrow-light">Top 15 · Tourist Favorites</span>
+                <h2>What everyone comes here for</h2>
+                <p>The most-visited destinations our guests ask about — sorted by drive time from the resort.</p>
+            </div>
+
+            <div class="ttd-attractions" id="ttdAttractions">
+                <!-- Cards injected by JS so we can animate them in -->
+            </div>
+
+            <div class="ttd-list-footer">
+                <p>Distances are approximate driving estimates from Color Canyon RV Resort. Got somewhere else in mind? <a href="#calculator">Use the calculator above</a>.</p>
+            </div>
         </div>
     </section>
 
@@ -1233,7 +1937,7 @@
                         <li><a href="offerings.html">Our Offerings</a></li>
                         <li><a href="amenities.html">Amenities</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="things-to-do.html">Things to Do</a></li>
+                        <li><a href="things-to-do.html" style="color:#3B1A0D;border-bottom:3px solid var(--terracotta)">Things to Do</a></li>
                         <li><a href="storage.html">Storage Space</a></li>
                     </ul>
                 </div>
@@ -1258,6 +1962,276 @@
             </div>
         </div>
     </footer>
+
+    
+    <!-- ===== THINGS TO DO PAGE SCRIPT ===== -->
+    <script>
+    (function() {
+        // === CONFIG: paste your free OpenRouteService API key here ===
+        // Get one at: https://openrouteservice.org/dev/#/signup (2,000 free requests/day, no credit card)
+        const ORS_API_KEY = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjNlNjE4MmFjNjAwMjRlNzE4YjZiMGJkYjVjMmUzODFiIiwiaCI6Im11cm11cjY0In0=';
+        
+        // Color Canyon RV Resort coordinates (50 South Rlington Parkway, Hurricane, UT)
+        const RESORT_COORDS = { lat: 37.1747, lng: -113.2890 };
+        const RESORT_NAME   = 'Color Canyon RV Resort, Hurricane, UT';
+        
+        // Top 15 attractions with pre-calculated distances from the resort
+        // Distances are approximate driving distances by road
+        const ATTRACTIONS = [
+            { name: "Sand Hollow State Park", category: "State Park", desc: "Sapphire-blue reservoir surrounded by red sandstone — paddleboard, swim, or just stare.", miles: 5, minutes: 10, coords: [37.121, -113.378], emoji: "🏖️" },
+            { name: "Quail Creek State Park", category: "State Park", desc: "Trout fishing, calm-water boating, and stunning canyon backdrops just down the road.", miles: 4, minutes: 8, coords: [37.187, -113.395], emoji: "🎣" },
+            { name: "Hurricane Cliffs & Mesa Trails", category: "Mountain Biking", desc: "World-class slickrock trails minutes from your campsite — JEM, Gould's Rim, more.", miles: 2, minutes: 5, coords: [37.176, -113.286], emoji: "🚵" },
+            { name: "Sky Mountain Golf Course", category: "Golf", desc: "Championship 18 with dramatic red-rock views and elevation changes.", miles: 1, minutes: 4, coords: [37.158, -113.296], emoji: "⛳" },
+            { name: "Gooseberry Mesa", category: "Mountain Biking", desc: "Legendary technical mesa-top trails with cliff-edge views in every direction.", miles: 9, minutes: 22, coords: [37.135, -113.198], emoji: "🚵" },
+            { name: "Grafton Ghost Town", category: "Historic Site", desc: "Abandoned 1860s Mormon settlement frozen in time, featured in 'Butch Cassidy'.", miles: 18, minutes: 27, coords: [37.165, -113.057], emoji: "👻" },
+            { name: "Zion National Park (Springdale)", category: "National Park", desc: "Towering sandstone cathedrals, the Narrows, Angels Landing — the crown jewel.", miles: 23, minutes: 32, coords: [37.200, -112.987], emoji: "🏔️" },
+            { name: "Snow Canyon State Park", category: "State Park", desc: "Lava tubes, petrified dunes, and white-and-red sandstone in a quieter setting.", miles: 24, minutes: 35, coords: [37.211, -113.640], emoji: "🌋" },
+            { name: "St. George Historic District", category: "City & Dining", desc: "Pioneer-era downtown, dining, the Tabernacle, and Pioneer Park climbing.", miles: 20, minutes: 25, coords: [37.105, -113.581], emoji: "🏛️" },
+            { name: "Kolob Canyons (Zion)", category: "National Park", desc: "Zion's quieter northern section — crimson finger canyons and panoramic overlooks.", miles: 40, minutes: 45, coords: [37.453, -113.193], emoji: "🍁" },
+            { name: "Coral Pink Sand Dunes", category: "State Park", desc: "Otherworldly pink dunes you can sled, hike, or ATV across.", miles: 60, minutes: 75, coords: [37.034, -112.728], emoji: "🏜️" },
+            { name: "Cedar Breaks Nat'l Monument", category: "Monument", desc: "10,000-foot amphitheater of hoodoos and wildflowers — Bryce's smaller cousin.", miles: 70, minutes: 90, coords: [37.631, -112.844], emoji: "🌲" },
+            { name: "Valley of Fire State Park", category: "State Park", desc: "Nevada's flame-red rock formations and ancient petroglyphs — a moonscape detour.", miles: 90, minutes: 100, coords: [36.487, -114.523], emoji: "🔥" },
+            { name: "Bryce Canyon National Park", category: "National Park", desc: "Forest of pink hoodoos at sunrise — one of the most photographed spots on Earth.", miles: 140, minutes: 165, coords: [37.593, -112.187], emoji: "✨" },
+            { name: "Las Vegas Strip", category: "Day Trip", desc: "Bright lights, big shows, and a totally different Utah-to-Nevada vibe shift.", miles: 130, minutes: 130, coords: [36.115, -115.173], emoji: "🎰" },
+        ];
+
+        // ============================================================
+        // RENDER TOP 15 CARDS
+        // ============================================================
+        const grid = document.getElementById('ttdAttractions');
+        ATTRACTIONS.forEach((a, i) => {
+            const hours = Math.floor(a.minutes / 60);
+            const mins  = a.minutes % 60;
+            const timeStr = hours > 0 ? (mins > 0 ? `${hours}h ${mins}m` : `${hours}h`) : `${mins} min`;
+            const card = document.createElement('article');
+            card.className = 'ttd-card';
+            card.style.transitionDelay = (i * 0.05) + 's';
+            card.innerHTML = `
+                <span class="ttd-rank">${i+1}</span>
+                <span class="ttd-card-category">${a.category}</span>
+                <h3>${a.name}</h3>
+                <p class="ttd-card-desc">${a.desc}</p>
+                <div class="ttd-card-stats">
+                    <div class="ttd-card-stat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                        <span><strong>${a.miles}</strong> mi</span>
+                    </div>
+                    <div class="ttd-card-stat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                        <span><strong>${timeStr}</strong> drive</span>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', () => {
+                const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(RESORT_NAME)}&destination=${encodeURIComponent(a.name + ', Utah')}`;
+                window.open(url, '_blank', 'noopener');
+            });
+            card.style.cursor = 'pointer';
+            grid.appendChild(card);
+        });
+
+        // Stagger reveal on scroll
+        const cardObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in-view');
+                    cardObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.ttd-card').forEach(c => cardObs.observe(c));
+
+        // ============================================================
+        // SUGGESTIONS DROPDOWN (filters attractions as they type)
+        // ============================================================
+        const input = document.getElementById('ttdDestInput');
+        const sugBox = document.getElementById('ttdSuggestions');
+        let activeIdx = -1;
+
+        function showSuggestions(q) {
+            const query = q.trim().toLowerCase();
+            sugBox.innerHTML = '';
+            if (!query) { sugBox.classList.remove('active'); return; }
+            const matches = ATTRACTIONS.filter(a =>
+                a.name.toLowerCase().includes(query) ||
+                a.category.toLowerCase().includes(query)
+            ).slice(0, 6);
+            if (matches.length === 0) { sugBox.classList.remove('active'); return; }
+            matches.forEach((m, i) => {
+                const el = document.createElement('div');
+                el.className = 'ttd-suggestion';
+                el.dataset.name = m.name;
+                el.innerHTML = `${m.name}<span class="ttd-suggestion-sub">${m.category} · ${m.miles} mi from resort</span>`;
+                el.addEventListener('click', () => {
+                    input.value = m.name;
+                    sugBox.classList.remove('active');
+                    document.getElementById('ttdGoBtn').click();
+                });
+                sugBox.appendChild(el);
+            });
+            sugBox.classList.add('active');
+            activeIdx = -1;
+        }
+        input.addEventListener('input', e => showSuggestions(e.target.value));
+        input.addEventListener('focus', e => { if (e.target.value) showSuggestions(e.target.value); });
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.ttd-pin-end')) sugBox.classList.remove('active');
+        });
+        input.addEventListener('keydown', e => {
+            const items = sugBox.querySelectorAll('.ttd-suggestion');
+            if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx+1, items.length-1); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx-1, 0); }
+            else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (activeIdx >= 0 && items[activeIdx]) {
+                    input.value = items[activeIdx].dataset.name;
+                    sugBox.classList.remove('active');
+                }
+                document.getElementById('ttdGoBtn').click();
+                return;
+            } else { return; }
+            items.forEach(i => i.classList.remove('active'));
+            if (items[activeIdx]) items[activeIdx].classList.add('active');
+        });
+
+        // ============================================================
+        // CALCULATE ROUTE
+        // ============================================================
+        const goBtn  = document.getElementById('ttdGoBtn');
+        const result = document.getElementById('ttdResult');
+        const errEl  = document.getElementById('ttdError');
+
+        function showError(msg) {
+            errEl.textContent = msg;
+            result.classList.add('show', 'error');
+        }
+
+        function animateNumber(el, target, suffix='', duration=900) {
+            const startTime = performance.now();
+            const start = 0;
+            function tick(now) {
+                const t = Math.min(1, (now - startTime) / duration);
+                const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+                const val = start + (target - start) * eased;
+                el.textContent = (target >= 100 ? Math.round(val) : val.toFixed(target < 10 ? 1 : 0)) + suffix;
+                if (t < 1) requestAnimationFrame(tick);
+                else el.textContent = (target >= 100 ? Math.round(target) : (target < 10 ? target.toFixed(1) : Math.round(target))) + suffix;
+            }
+            requestAnimationFrame(tick);
+        }
+
+        function formatTime(minutes) {
+            const h = Math.floor(minutes / 60);
+            const m = Math.round(minutes % 60);
+            if (h === 0) return m + 'm';
+            if (m === 0) return h + 'h';
+            return h + 'h ' + m + 'm';
+        }
+
+        function showResult(destName, miles, minutes) {
+            document.getElementById('ttdRouteTo').textContent = destName.length > 22 ? destName.slice(0,20) + '…' : destName;
+            result.classList.remove('error');
+            // Reset animation
+            result.classList.remove('show');
+            void result.offsetWidth; // force reflow so path re-animates
+            result.classList.add('show');
+            // Animate numbers
+            const milesEl = document.getElementById('ttdMiles');
+            const timeEl  = document.getElementById('ttdTime');
+            milesEl.textContent = '0';
+            timeEl.textContent  = '0';
+            setTimeout(() => {
+                animateNumber(milesEl, miles, '', 1100);
+                // Animate time as raw minute count then swap to formatted at end
+                const timeStart = performance.now();
+                const dur = 1100;
+                function tickT(now) {
+                    const t = Math.min(1, (now - timeStart) / dur);
+                    const eased = 1 - Math.pow(1 - t, 3);
+                    const cur = minutes * eased;
+                    timeEl.textContent = formatTime(cur);
+                    if (t < 1) requestAnimationFrame(tickT);
+                    else timeEl.textContent = formatTime(minutes);
+                }
+                requestAnimationFrame(tickT);
+            }, 300);
+
+            // Maps link
+            document.getElementById('ttdMapsLink').href =
+                `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(RESORT_NAME)}&destination=${encodeURIComponent(destName)}`;
+        }
+
+        async function geocode(query) {
+            // Uses OpenStreetMap Nominatim (free, no key required) for geocoding
+            // Bias toward US results
+            const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
+            const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+            if (!res.ok) throw new Error('Geocode failed');
+            const data = await res.json();
+            if (!data || data.length === 0) throw new Error('Location not found');
+            return {
+                lat: parseFloat(data[0].lat),
+                lng: parseFloat(data[0].lon),
+                name: data[0].display_name.split(',').slice(0, 2).join(',').trim()
+            };
+        }
+
+        async function driveDistance(lat, lng) {
+            if (!ORS_API_KEY) {
+                // Fallback: estimate from straight-line distance × 1.25 and avg 55mph
+                const R = 3958.8;
+                const dLat = (lat - RESORT_COORDS.lat) * Math.PI / 180;
+                const dLng = (lng - RESORT_COORDS.lng) * Math.PI / 180;
+                const a = Math.sin(dLat/2)**2 + Math.cos(RESORT_COORDS.lat * Math.PI/180) * Math.cos(lat * Math.PI/180) * Math.sin(dLng/2)**2;
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                const straightMi = R * c;
+                const miles = straightMi * 1.25;
+                const minutes = (miles / 55) * 60;
+                return { miles: Math.round(miles), minutes: Math.round(minutes), estimated: true };
+            }
+            const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${ORS_API_KEY}&start=${RESORT_COORDS.lng},${RESORT_COORDS.lat}&end=${lng},${lat}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error('Routing failed');
+            const data = await res.json();
+            const summary = data.features[0].properties.summary;
+            return {
+                miles: Math.round(summary.distance * 0.000621371),
+                minutes: Math.round(summary.duration / 60),
+                estimated: false
+            };
+        }
+
+        async function calcRoute() {
+            const q = input.value.trim();
+            if (!q) { input.focus(); return; }
+            goBtn.classList.add('loading');
+            goBtn.disabled = true;
+
+            try {
+                // Check if it matches one of our preset attractions first (instant, no API needed)
+                const preset = ATTRACTIONS.find(a => a.name.toLowerCase() === q.toLowerCase());
+                if (preset) {
+                    await new Promise(r => setTimeout(r, 500)); // brief pause for UX
+                    showResult(preset.name, preset.miles, preset.minutes);
+                } else {
+                    const loc = await geocode(q);
+                    const dist = await driveDistance(loc.lat, loc.lng);
+                    showResult(loc.name || q, dist.miles, dist.minutes);
+                }
+            } catch (err) {
+                showError("Hmm, we couldn't find that one. Try a more specific place name (e.g. 'Zion National Park, Utah').");
+            } finally {
+                goBtn.classList.remove('loading');
+                goBtn.disabled = false;
+            }
+        }
+
+        goBtn.addEventListener('click', calcRoute);
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !sugBox.classList.contains('active')) calcRoute();
+        });
+    })();
+    </script>
 
     <script>
         const nav = document.getElementById('nav');
