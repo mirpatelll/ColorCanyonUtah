@@ -1789,6 +1789,109 @@
             .ttd-stat-divider { width: 60px; height: 1px; }
         }
 
+    
+
+        /* ================================================================
+           SPLIT BOOK BUTTON - Camplife | Hipcamp shown side-by-side
+           Both platforms always equal weight, never picking a "primary"
+           ================================================================ */
+        .book-split {
+            display: inline-flex;
+            align-items: stretch;
+            background: var(--terracotta);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .book-split:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(194,101,58,0.35);
+        }
+        .book-split a {
+            color: #fff !important;
+            text-decoration: none;
+            padding: 0.65rem 1.1rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            transition: background 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            border: none !important;
+            border-bottom: none !important;
+        }
+        .book-split a:hover { background: var(--terracotta-dark); }
+        .book-split .book-split-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.35);
+            align-self: stretch;
+        }
+        .book-split .book-split-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.85;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .book-split .book-split-name {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        /* Larger variant for CTAs in body content */
+        .book-split-lg {
+            border-radius: 8px;
+        }
+        .book-split-lg a {
+            padding: 1rem 1.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            flex-direction: column;
+            gap: 0;
+        }
+        .book-split-lg .book-split-name { font-size: 0.95rem; }
+
+        /* White-on-dark variant used in CTA sections with dark backgrounds */
+        .book-split-white {
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+        }
+        .book-split-white a { color: #3B1A0D !important; }
+        .book-split-white a:hover { background: #F4E4CC; }
+        .book-split-white .book-split-divider { background: rgba(59,26,13,0.18); }
+
+        /* On mobile - stack the two buttons vertically inside the nav menu */
+        @media (max-width: 768px) {
+            .nav-links .book-split {
+                flex-direction: column;
+                width: auto;
+            }
+            .nav-links .book-split .book-split-divider {
+                width: auto;
+                height: 1px;
+            }
+            .nav-links .book-split a {
+                padding: 0.8rem 2rem;
+                justify-content: center;
+            }
+        }
+        /* Very small screens - inline split CTAs in hero etc stack too */
+        @media (max-width: 480px) {
+            .book-split-lg { flex-direction: column; width: 100%; max-width: 320px; }
+            .book-split-lg .book-split-divider { width: auto; height: 1px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1806,7 +1909,7 @@
             <li><a href="rules.html">Resort Info</a></li>
             <li><a href="storage.html">Storage</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="https://www.camplife.com/1297/reservation/step1" class="btn-book" target="_blank">Book Now</a></li>
+            <li class="book-split-wrap"><span class="book-split"><a href="https://www.camplife.com/1297/reservation/step1" target="_blank" rel="noopener">Camplife</a><span class="book-split-divider"></span><a href="https://www.hipcamp.com/en-US/land/utah-color-canyon-rv-resort-7rvh9wow?adults=1&children=0" target="_blank" rel="noopener">Hipcamp</a></span></li>
         </ul>
         <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
             <span></span>
@@ -1946,7 +2049,8 @@
                     <ul class="footer-links">
                         <li><a href="rules.html">Resort Rules</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="https://www.camplife.com/1297/reservation/step1" target="_blank">Book Online</a></li>
+                        <li><a href="https://www.camplife.com/1297/reservation/step1" target="_blank">Book on Camplife</a></li>
+                        <li><a href="https://www.hipcamp.com/en-US/land/utah-color-canyon-rv-resort-7rvh9wow?adults=1&children=0" target="_blank">Book on Hipcamp</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
