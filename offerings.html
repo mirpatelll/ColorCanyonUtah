@@ -1335,7 +1335,7 @@
             background: transparent;
             border: none;
             color: rgba(247,241,230,0.72);
-            padding: 0.7rem 0.4rem;
+            padding: 0.6rem 0.4rem;
             font-family: var(--font-body);
             font-size: 0.82rem;
             font-weight: 700;
@@ -1344,13 +1344,35 @@
             border-radius: 6px;
             cursor: pointer;
             transition: background 0.25s, color 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.15rem;
+            line-height: 1.2;
+        }
+        .calc-tabs button small {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: none;
+            opacity: 0.75;
         }
         .calc-tabs button.active {
             background: var(--terracotta);
             color: #fff;
             box-shadow: 0 2px 10px rgba(201,106,43,0.35);
         }
+        .calc-tabs button.active small { opacity: 0.9; }
         .calc-tabs button:hover:not(.active) { color: #F7F1E6; }
+        .calc-hint {
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            color: rgba(247,241,230,0.45);
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
         .calc-result {
             background: linear-gradient(165deg, #6B2F1F 0%, #3B1A0D 100%);
             border-radius: 10px;
@@ -1531,28 +1553,27 @@
                         </select>
                     </div>
                     <div class="calc-field">
-                        <label>Stay Length</label>
-                        <div class="calc-tabs" role="tablist">
-                            <button type="button" data-tab="daily" class="active">Daily</button>
-                            <button type="button" data-tab="weekly">Weekly</button>
-                            <button type="button" data-tab="monthly">Monthly</button>
-                        </div>
+                        <label for="calcQty">Number of Nights</label>
+                        <input id="calcQty" type="number" min="1" value="1" inputmode="numeric">
                     </div>
                     <div class="calc-field">
-                        <label for="calcQty">Number of <span id="calcUnit">Nights</span></label>
-                        <input id="calcQty" type="number" min="1" value="1" inputmode="numeric">
+                        <label>Rate Tier <small class="calc-hint">(auto-applied)</small></label>
+                        <div class="calc-tabs" role="tablist" aria-label="Active rate tier">
+                            <button type="button" data-tab="daily"   class="active">Daily<small>1–6 nights</small></button>
+                            <button type="button" data-tab="weekly">Weekly<small>7 days a week</small></button>
+                            <button type="button" data-tab="monthly">Monthly<small>28 days a month</small></button>
+                        </div>
                     </div>
                 </div>
                 <div class="calc-result" aria-live="polite">
-                    <div class="result-row"><span>Rate</span><span id="resRate">$0.00</span></div>
                     <div class="result-row"><span>Subtotal <small id="resNights">1 night</small></span><span id="resSubtotal">$0.00</span></div>
-                    <div class="result-row"><span>Resort Fee ($3.50 / night)</span><span id="resFees">$0.00</span></div>
-                    <div class="result-row"><span>Tax (<span id="resTaxPct">13.07</span>%)</span><span id="resTax">$0.00</span></div>
+                    <div class="result-row"><span>Fees</span><span id="resFees">$0.00</span></div>
+                    <div class="result-row"><span>Tax</span><span id="resTax">$0.00</span></div>
                     <div class="result-row total"><span>Total</span><span id="resTotal">$0.00</span></div>
                     <a class="calc-cta" href="https://www.camplife.com/1297/reservation/step1" target="_blank" rel="noopener">Book This Stay →</a>
                 </div>
             </div>
-            <p class="calc-note"><strong>How rates work:</strong> The weekly rate activates at exactly <strong>7 nights</strong>, and the monthly rate at exactly <strong>28 nights</strong>. Shorter stays are billed at the daily rate.</p>
+            <p class="calc-note"><strong>How rates work:</strong> Stays of 1–6 nights are billed at the daily rate. Once a stay reaches <strong>7 nights</strong>, the weekly rate is used as the base for the first 7 nights and the daily rate is added for each additional night. At <strong>28 nights</strong>, the monthly rate replaces the weekly base and each additional night is still billed at the daily rate.</p>
             <p class="calc-disclaimer"><em>Fees and taxes are subject to change. Final pricing is confirmed at the time of booking.</em></p>
         </div>
     </section>
@@ -1690,9 +1711,10 @@
 
         /* ============================================================
            RATE CALCULATOR (Color Canyon RV Resort — Summer rates)
-           Daily applies to stays of 1–6 nights.
-           Weekly activates at exactly 7 nights.
-           Monthly activates at exactly 28 nights.
+           Tiered pricing:
+             • 1–6 nights  → daily × nights
+             • 7–27 nights → weekly base + daily × (nights − 7)
+             • 28+ nights  → monthly base + daily × (nights − 28)
            ============================================================ */
         const SITE_RATES = {
             '40':  { daily: 41, weekly: 245, monthly: 719 },
@@ -1703,48 +1725,50 @@
             '80':  { daily: 55, weekly: 350, monthly: 809 },
             '110': { daily: 75, weekly: 420, monthly: 909 }
         };
-        const TAX_RATE       = 0.1307; // 13.07% Hurricane, UT lodging tax
-        const FEE_PER_NIGHT  = 3.50;   // Resort fee charged per night
-        const NIGHTS_PER     = { daily: 1, weekly: 7, monthly: 28 };
+        const TAX_RATE = 0.1307;  // 13.07% Hurricane, UT lodging tax
+        const FEE      = 3.50;    // One-time booking fee
 
         (function initCalculator() {
             const sizeEl = document.getElementById('calcSize');
             const qtyEl  = document.getElementById('calcQty');
-            const unitEl = document.getElementById('calcUnit');
             const tabs   = document.querySelectorAll('.calc-tabs button');
-            const taxPct = document.getElementById('resTaxPct');
             if (!sizeEl || !qtyEl) return;
-
-            if (taxPct) taxPct.textContent = (TAX_RATE * 100).toFixed(2).replace(/\.?0+$/, '');
-
-            let term = 'daily';
-            const unitLabels = { daily: 'Nights', weekly: 'Weeks', monthly: 'Months' };
-            const perLabels  = { daily: 'night',  weekly: 'week',  monthly: 'month'  };
 
             const fmt = n => '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+            function tierFor(nights) {
+                if (nights >= 28) return 'monthly';
+                if (nights >= 7)  return 'weekly';
+                return 'daily';
+            }
+
+            function subtotalFor(rates, nights) {
+                if (nights >= 28) return rates.monthly + rates.daily * (nights - 28);
+                if (nights >= 7)  return rates.weekly  + rates.daily * (nights - 7);
+                return rates.daily * nights;
+            }
+
             function update() {
-                const size = sizeEl.value;
-                const rate = (SITE_RATES[size] && SITE_RATES[size][term]) || 0;
-                const qty  = Math.max(1, parseInt(qtyEl.value, 10) || 1);
-                const subtotal = rate * qty;
-                const nights = NIGHTS_PER[term] * qty;
-                const fees = FEE_PER_NIGHT * nights;
-                const tax  = subtotal * TAX_RATE;
-                const total = subtotal + fees + tax;
-                document.getElementById('resRate').textContent     = fmt(rate) + ' / ' + perLabels[term];
+                const rates = SITE_RATES[sizeEl.value] || { daily: 0, weekly: 0, monthly: 0 };
+                const nights = Math.max(1, parseInt(qtyEl.value, 10) || 1);
+                const subtotal = subtotalFor(rates, nights);
+                const tax = subtotal * TAX_RATE;
+                const total = subtotal + FEE + tax;
+                const tier = tierFor(nights);
+
                 document.getElementById('resSubtotal').textContent = fmt(subtotal);
-                document.getElementById('resFees').textContent     = fmt(fees);
+                document.getElementById('resFees').textContent     = fmt(FEE);
                 document.getElementById('resTax').textContent      = fmt(tax);
                 document.getElementById('resTotal').textContent    = fmt(total);
                 document.getElementById('resNights').textContent   = nights + (nights === 1 ? ' night' : ' nights');
-                unitEl.textContent = unitLabels[term];
+
+                tabs.forEach(b => b.classList.toggle('active', b.dataset.tab === tier));
             }
 
+            // Tab click → quick-fill nights for that tier and recalc
+            const quickFill = { daily: 1, weekly: 7, monthly: 28 };
             tabs.forEach(btn => btn.addEventListener('click', () => {
-                tabs.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                term = btn.dataset.tab;
+                qtyEl.value = quickFill[btn.dataset.tab];
                 update();
             }));
             sizeEl.addEventListener('change', update);
