@@ -1406,12 +1406,32 @@
             transition: background 0.2s, transform 0.2s;
         }
         .calc-cta:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+        .calc-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.92rem;
+            color: rgba(247,241,230,0.78);
+            line-height: 1.7;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .calc-note strong { color: var(--terracotta-light); font-weight: 700; }
         .calc-disclaimer {
             text-align: center;
-            margin-top: 1.6rem;
+            margin-top: 0.6rem;
             font-size: 0.85rem;
-            font-style: italic;
             color: rgba(247,241,230,0.55);
+        }
+        .calc-disclaimer em { font-style: italic; }
+        .result-row small {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(247,241,230,0.5);
+            margin-top: 0.15rem;
+            font-weight: 400;
         }
         @media (max-width: 768px) {
             .calculator { grid-template-columns: 1fr; padding: 1.25rem; gap: 1.25rem; }
@@ -1525,13 +1545,15 @@
                 </div>
                 <div class="calc-result" aria-live="polite">
                     <div class="result-row"><span>Rate</span><span id="resRate">$0.00</span></div>
-                    <div class="result-row"><span>Subtotal</span><span id="resSubtotal">$0.00</span></div>
-                    <div class="result-row"><span>Tax (<span id="resTaxPct">9.95</span>%)</span><span id="resTax">$0.00</span></div>
+                    <div class="result-row"><span>Subtotal <small id="resNights">1 night</small></span><span id="resSubtotal">$0.00</span></div>
+                    <div class="result-row"><span>Resort Fee ($3.50 / night)</span><span id="resFees">$0.00</span></div>
+                    <div class="result-row"><span>Tax (<span id="resTaxPct">13.07</span>%)</span><span id="resTax">$0.00</span></div>
                     <div class="result-row total"><span>Total</span><span id="resTotal">$0.00</span></div>
                     <a class="calc-cta" href="https://www.camplife.com/1297/reservation/step1" target="_blank" rel="noopener">Book This Stay →</a>
                 </div>
             </div>
-            <p class="calc-disclaimer">Estimates only — final pricing, deposits, and applicable taxes are confirmed at the time of booking.</p>
+            <p class="calc-note"><strong>How rates work:</strong> The weekly rate activates at exactly <strong>7 nights</strong>, and the monthly rate at exactly <strong>28 nights</strong>. Shorter stays are billed at the daily rate.</p>
+            <p class="calc-disclaimer"><em>Fees and taxes are subject to change. Final pricing is confirmed at the time of booking.</em></p>
         </div>
     </section>
 
@@ -1667,20 +1689,23 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         /* ============================================================
-           RATE CALCULATOR
-           Edit SITE_RATES and TAX_RATE below to match real pricing.
-           Each entry: { daily, weekly, monthly } in USD per period.
+           RATE CALCULATOR (Color Canyon RV Resort — Summer rates)
+           Daily applies to stays of 1–6 nights.
+           Weekly activates at exactly 7 nights.
+           Monthly activates at exactly 28 nights.
            ============================================================ */
         const SITE_RATES = {
-            '40':  { daily: 55, weekly: 330, monthly: 750  },
-            '52':  { daily: 60, weekly: 360, monthly: 820  },
-            '60':  { daily: 65, weekly: 390, monthly: 880  },
-            '62':  { daily: 75, weekly: 450, monthly: 1000 },
-            '64':  { daily: 65, weekly: 390, monthly: 880  },
-            '80':  { daily: 80, weekly: 480, monthly: 1050 },
-            '110': { daily: 90, weekly: 540, monthly: 1200 }
+            '40':  { daily: 41, weekly: 245, monthly: 719 },
+            '52':  { daily: 43, weekly: 259, monthly: 739 },
+            '60':  { daily: 45, weekly: 273, monthly: 749 },
+            '62':  { daily: 47, weekly: 287, monthly: 769 },
+            '64':  { daily: 49, weekly: 301, monthly: 759 },
+            '80':  { daily: 55, weekly: 350, monthly: 809 },
+            '110': { daily: 75, weekly: 420, monthly: 909 }
         };
-        const TAX_RATE = 0.0995; // 9.95% — verify Hurricane, UT combined sales + transient room tax
+        const TAX_RATE       = 0.1307; // 13.07% Hurricane, UT lodging tax
+        const FEE_PER_NIGHT  = 3.50;   // Resort fee charged per night
+        const NIGHTS_PER     = { daily: 1, weekly: 7, monthly: 28 };
 
         (function initCalculator() {
             const sizeEl = document.getElementById('calcSize');
@@ -1703,12 +1728,16 @@
                 const rate = (SITE_RATES[size] && SITE_RATES[size][term]) || 0;
                 const qty  = Math.max(1, parseInt(qtyEl.value, 10) || 1);
                 const subtotal = rate * qty;
-                const tax = subtotal * TAX_RATE;
-                const total = subtotal + tax;
+                const nights = NIGHTS_PER[term] * qty;
+                const fees = FEE_PER_NIGHT * nights;
+                const tax  = subtotal * TAX_RATE;
+                const total = subtotal + fees + tax;
                 document.getElementById('resRate').textContent     = fmt(rate) + ' / ' + perLabels[term];
                 document.getElementById('resSubtotal').textContent = fmt(subtotal);
+                document.getElementById('resFees').textContent     = fmt(fees);
                 document.getElementById('resTax').textContent      = fmt(tax);
                 document.getElementById('resTotal').textContent    = fmt(total);
+                document.getElementById('resNights').textContent   = nights + (nights === 1 ? ' night' : ' nights');
                 unitEl.textContent = unitLabels[term];
             }
 
