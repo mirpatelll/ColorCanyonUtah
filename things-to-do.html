@@ -1892,6 +1892,35 @@
             .book-split-lg .book-split-divider { width: auto; height: 1px; }
         }
 
+        /* ============================================================
+           MOBILE HEADING + NAV FIXES
+           Forces section headings to render on mobile even if the
+           IntersectionObserver reveal animation never fires, and gives
+           the mobile nav overlay a larger scroll surface so every link
+           is reachable on short phones.
+           ============================================================ */
+        @media (max-width: 768px) {
+            .slide-3d,
+            .slide-3d > *,
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .nav-links {
+                justify-content: flex-start !important;
+                padding: 7rem 1.5rem 3rem !important;
+                gap: 1.4rem !important;
+                overscroll-behavior: contain;
+            }
+            .nav-links a { font-size: 1.15rem !important; }
+            .page-hero { padding: 7.5rem 1.25rem 2.5rem !important; }
+            .page-hero h1 { font-size: clamp(2.1rem, 8vw, 3rem) !important; }
+            .page-hero p  { font-size: 1rem !important; }
+            .page-section { padding: 3.5rem 1.25rem !important; }
+            .page-section h2 { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+            .section-header { margin-bottom: 2.5rem !important; }
+        }
+
     </style>
 </head>
 <body>
