@@ -1296,6 +1296,34 @@
             .section-header { margin-bottom: 2.5rem !important; }
         }
 
+        /* ============================================================
+           MOBILE MENU CLOSE BUTTON (top-left of overlay)
+           ============================================================ */
+        .nav-close {
+            display: none;
+            position: fixed;
+            top: 1.1rem;
+            left: 1.1rem;
+            z-index: 1002;
+            background: rgba(247,241,230,0.08);
+            border: 1px solid rgba(247,241,230,0.25);
+            color: #F7F1E6;
+            font-size: 1.8rem;
+            line-height: 1;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 0 3px;
+            border-radius: 50%;
+            font-family: inherit;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .nav-links.active ~ .nav-close { display: flex; }
+        .nav-close:hover { background: rgba(247,241,230,0.18); transform: scale(1.05); }
+        .nav-toggle.active { display: none !important; }
+
     </style>
 </head>
 <body>
@@ -1315,6 +1343,7 @@
             <li><a href="contact.html">Contact</a></li>
             <li class="book-split-wrap"><span class="book-split"><a href="https://www.camplife.com/1297/reservation/step1" target="_blank" rel="noopener">Camplife</a><span class="book-split-divider"></span><a href="https://www.hipcamp.com/en-US/land/utah-color-canyon-rv-resort-7rvh9wow?adults=1&children=0" target="_blank" rel="noopener">Hipcamp</a></span></li>
         </ul>
+        <button type="button" class="nav-close" onclick="toggleNav()" aria-label="Close menu">&times;</button>
         <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
             <span></span>
             <span></span>
